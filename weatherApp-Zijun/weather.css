@@ -122,7 +122,7 @@ input {
 
   position: absolute;
   min-width: 200%;
-
+  left: 0%;
   transition-property: left;
   transition-duration: 1s;
 }
