@@ -1,0 +1,185 @@
+<!--Author: Zijun Zhou-->
+<!--
+Beginning of Weather App
+
+Also requires files:
+	weather.css
+	weather.js
+-->
+
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Weather App</title>
+	<!-- <link rel="stylesheet" type="text/css" href="reset.css"> -->
+	<link rel="stylesheet" type="text/css" href="weather.css"></link>
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+</head>
+
+<body>
+
+<div id="header">
+  <div class="header-left">
+		<p id="current_time"></p>
+		<p id="current_date"></p>
+		<p id="current_location1"></p>
+  </div>
+	<div class="header-right">
+		<input id="zipbox" type="text" placeholder="enter zip">
+		<button onclick="gotNewPlace()">submit</button>
+		<img onclick="gotNewPlace()" id="plus" src="../WeatherApp/plus.png" alt="no">
+	</div>
+</div>
+
+<div id="current_container">
+	<img id="current_img" >
+	<div class="current_main">
+		<p id="current_location"></p>
+		<div class="temp">
+			<p id="current_temp"></p>
+			<h1>F</h1>
+		</div>
+		<p id="current_weather"></p>
+	</div>
+	<div class="current_sub">
+		<div class="drop">
+			<img src="../WeatherApp/drop.png" alt="null">
+			<p id="current_humid"></p>
+		</div>
+		<div class="wind">
+			<img src="../WeatherApp/wind.png" alt="null">
+			<p id="current_wind"></p>
+		</div>
+	</div>
+</div>
+
+<div id="forecast_container">
+
+	<div id="weatherWindow">
+  <!--box1-->
+	<div id="weatherBox1">
+    <p id="forecast_day1"></p>
+		<img id="forecast_img1">
+		<p id="forecast_weather1"></p>
+		<div class="high-low">
+			<p id="forecast_dhigh1"></p>
+			<p id="forecast_dlow1"></p>
+		</div>
+	</div>
+	<!--box2-->
+	<div id="weatherBox">
+    <p id="forecast_day2"></p>
+		<img id="forecast_img2">
+		<p id="forecast_weather2"></p>
+		<div class="high-low">
+			<p id="forecast_dhigh2"></p>
+			<p id="forecast_dlow2"></p>
+		</div>
+	</div>
+	<!--box3-->
+	<div id="weatherBox">
+		<p id="forecast_day3"></p>
+		<img id="forecast_img3">
+		<p id="forecast_weather3"></p>
+		<div class="high-low">
+			<p id="forecast_dhigh3"></p>
+			<p id="forecast_dlow3"></p>
+		</div>
+	</div>
+	<!--box4-->
+	<div id="weatherBox">
+		<p id="forecast_day4"></p>
+		<img id="forecast_img4">
+		<p id="forecast_weather4"></p>
+		<div class="high-low">
+			<p id="forecast_dhigh4"></p>
+			<p id="forecast_dlow4"></p>
+		</div>
+	</div>
+	<!--box5-->
+	<div id="weatherBox">
+		<p id="forecast_day5"></p>
+		<img id="forecast_img5">
+		<p id="forecast_weather5"></p>
+		<div class="high-low">
+			<p id="forecast_dhigh5"></p>
+			<p id="forecast_dlow5"></p>
+		</div>
+	</div>
+	<!--box6-->
+	<div id="weatherBox">
+		<p id="forecast_day6"></p>
+		<img id="forecast_img6">
+		<p id="forecast_weather6"></p>
+		<div class="high-low">
+			<p id="forecast_dhigh6"></p>
+			<p id="forecast_dlow6"></p>
+		</div>
+	</div>
+	<!--box7-->
+	<div id="weatherBox">
+		<p id="forecast_day7"></p>
+		<img id="forecast_img7">
+		<p id="forecast_weather7"></p>
+		<div class="high-low">
+			<p id="forecast_dhigh7"></p>
+			<p id="forecast_dlow7"></p>
+		</div>
+	</div>
+	<!--box8-->
+	<div id="weatherBox">
+		<p id="forecast_day8"></p>
+		<img id="forecast_img8">
+		<p id="forecast_weather8"></p>
+		<div class="high-low">
+			<p id="forecast_dhigh8"></p>
+			<p id="forecast_dlow8"></p>
+		</div>
+	</div>
+	<!--box9-->
+	<div id="weatherBox">
+		<p id="forecast_day9"></p>
+		<img id="forecast_img9">
+		<p id="forecast_weather9"></p>
+		<div class="high-low">
+			<p id="forecast_dhigh9"></p>
+			<p id="forecast_dlow9"></p>
+		</div>
+	</div>
+	<!--box10-->
+	<div id="weatherBox">
+		<p id="forecast_day10"></p>
+		<img id="forecast_img10">
+		<p id="forecast_weather10"></p>
+		<div class="high-low">
+			<p id="forecast_dhigh10"></p>
+			<p id="forecast_dlow10"></p>
+		</div>
+	</div>
+
+	</div>
+
+  <!--slider button-->
+	<div class="slide_button">
+		<div class="previous" onclick="slider(0)">
+			<img src="../WeatherApp/arrow-left.png" alt="null">
+			<h4>previous forecasts</h4>
+		</div>
+		<div class="more" onclick="slider(1)">
+			<h4>more forecasts</h4>
+			<img src="../WeatherApp/arrow-right.png" alt="null">
+		</div>
+	</div>
+  <!--yahoo acknowledgement-->
+	<img src="https://poweredby.yahoo.com/purple.png" alt="Powered by Yahoo!">
+</div>
+<!-- contains callback function that is called when weather gets here from server -->
+<script src="weather.js"></script>
+
+<!-- asks server to send weather -->
+<script src="https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='davis, ca')&format=json&callback=callbackFunction"></script>
+
+</body>
+</html>
